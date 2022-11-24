@@ -2,12 +2,20 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+/**
+ * @brief contains a value and the next element
+ * in a list.
+ */
 struct element
 {
     int val;
     struct element * suiv;
 };
 
+/**
+ * @brief contains the last element (preferably NULL)
+ * and the last added one.
+ */
 typedef struct
 {
     struct element * premier;
@@ -51,6 +59,12 @@ void init(liste * l)
     l->dernier = createList(0);
 }
 
+/**
+ * @brief Create an element with a number associated
+ * 
+ * @param num int
+ * @return struct element* the element
+ */
 struct element * createList(int num)
 {
     struct element * vide=(struct element*)malloc(sizeof(struct element));
@@ -59,6 +73,12 @@ struct element * createList(int num)
     return vide;
 }
 
+/**
+ * @brief add a new element (int) to a given pointer list,
+ * 
+ * @param l  liste* the list you want to modify
+ * @param val val int
+ */
 void ajoutfile(liste* l,int val)
 {
     struct element* suivant=(struct element*)malloc(sizeof(struct element));
@@ -67,6 +87,11 @@ void ajoutfile(liste* l,int val)
     l->premier = suivant;
 }
 
+/**
+ * @brief Delete the first element of the list
+ * 
+ * @param l liste * the list you want to modify
+ */
 void supprimefile(liste* l)
 {
     struct element * oldElement = l->premier->suiv;
@@ -74,6 +99,11 @@ void supprimefile(liste* l)
     l->premier = oldElement;
 }
 
+/**
+ * @brief Prints the given list in order
+ * 
+ * @param l liste
+ */
 void printlist(liste l)
 {
     struct element * ePremier = l.premier;
@@ -86,6 +116,12 @@ void printlist(liste l)
     printf("NULL \n");
 }
 
+/**
+ * @brief Returns the size of a given list
+ * 
+ * @param l liste
+ * @return int
+ */
 int sizeliste(liste l)
 {
     int returnValue=0;
@@ -99,6 +135,13 @@ int sizeliste(liste l)
     return returnValue;
 }
 
+/**
+ * @brief verify if a list is null
+ * 
+ * @param l 
+ * @return true if the size of the given list is 0
+ * @return false else
+ */
 bool isVoid(liste l)
 {
     return sizeliste(l)==0;
